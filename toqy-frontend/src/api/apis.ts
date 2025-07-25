@@ -164,8 +164,8 @@ export const dislikeImageByIdAPI = async (id: number) => {
  */
 export const getMessagesListAPI = async (params: { pageNum: number; pageSize: number; order: string }) => {
     try {
-        const result = await instance.get<MessageListCallbackType>('/messages', { params });
-        return result;
+        const result = await instance.get<MessageType[]>('/messages', { params });
+        return result.data;
     } catch (error) {
         console.error("获取留言列表失败:", error);
         return false;
@@ -244,7 +244,7 @@ export const deleteMessageByIdAPI = async (id: number) => {
 export const getStatisticsAPI = async () => {
     try {
         const result = await instance.get<StatisticsCallbackType>('/statistics');
-        return result;
+        return result.data;
     } catch (error) {
         console.error("获取全局统计信息失败:", error);
         return false;
