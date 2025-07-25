@@ -7,6 +7,10 @@ export default defineConfig({
   // 端口5176，允许0.0.0.0/0访问
   server: {
     host: true,
-    port: 5176
+    port: 5176,
+    // 添加允许的主机列表
+    allowedHosts: [
+      'qingyun.uncleyumo.cn'
+    ]
   }
 })
