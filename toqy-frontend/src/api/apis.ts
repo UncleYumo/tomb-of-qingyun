@@ -82,12 +82,31 @@ export const uploadImageAPI = async (file: File) => {
         formData.append('file', file);
         await instance.post<void>('/images', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+                'Content-Type': 'multipart/form-data'
+            }
         });
         return true;
     } catch (error) {
         console.error("上传图片失败:", error);
+        return false;
+    }
+};
+
+/**
+ * 更新头像
+ */
+export const updateAvatarAPI = async (file: File) => {
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        await instance.put<void>('/statistics/updateAvatar', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return true;
+    } catch (error) {
+        console.error("更新头像失败:", error);
         return false;
     }
 };
@@ -101,8 +120,8 @@ export const uploadImageAPI = async (file: File) => {
  */
 export const getImageListAPI = async (params: { pageNum: number; pageSize: number; order: string }) => {
     try {
-        const result = await instance.get<ImageListCallbackType>('/images', { params });
-        return result; // request.ts 中已经处理了 .data 的提取
+        const result = await instance.get<ImageType[]>('/images', { params });
+        return result.data; // request.ts 中已经处理了 .data 的提取
     } catch (error) {
         console.error("获取图片列表失败:", error);
         return false;

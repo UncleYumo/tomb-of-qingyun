@@ -2,7 +2,8 @@ import axios from "axios";  // 引入axios库的类型定义
 import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios"
 import {ElMessage} from "element-plus";
 
-const baseURL: string = "https://dev.uncleyumo.cn/api/toqy/";
+// const baseURL: string = "https://dev.uncleyumo.cn/api/toqy/";
+const baseURL: string = "http://localhost:8086";
 
 type ResponseDataType<T> = {
     code: number;
